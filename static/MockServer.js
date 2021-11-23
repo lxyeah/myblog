@@ -5,7 +5,8 @@ const FavoriteDB = require('./FavoriteDB');
 const paperDB = require('./PaperDB');
 const LikeDB = require('./LikeDB');
 const Blog_CommentDB = require('./Blog_CommentDB');
-const FollowDB = require('./FollowDB')
+const FollowDB = require('./FollowDB');
+const Lib = require('./Lib');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
@@ -402,7 +403,8 @@ app.get('/like/getpaperlist', jsonParser, async (req, res) => {
     let userId = req.query.userId;
     let paperList = await LikeDB.getPaperList(userId);
     let papers = JSON.parse(paperList);
-    console.log(papers);
+    Lib.sortByKey(papers, "createTime");
+    // console.log(papers);
     await res.json({
         papers
     });
@@ -430,6 +432,7 @@ app.get('/paper/getsearch', jsonParser, async (req, res) => {
     console.log(text);
     let papers = await paperDB.getAll();
     papers = JSON.parse(papers);
+    Lib.sortByKey(papers, "createTime");
     let total = papers.length;
     let list = [];
     if(text===''){
@@ -470,7 +473,7 @@ app.get('/paper/getpaper', jsonParser, async (req, res) => {
 
     let paperInfo = await paperDB.get(paperId);
     paper = JSON.parse(paperInfo);
-    console.log(paper);
+    console.log(paper["title"]);
     await res.json(
         paper
     )
@@ -482,6 +485,7 @@ app.get('/paper/getmypapers', jsonParser, async(req,res) =>{
     let current = req.query.current;
     let papers = await paperDB.getmypapers(userId)
     papers = JSON.parse(papers)
+    Lib.sortByKey(papers, "creatTime");
     let pageSize = 10;
     let paperList = [];
     for (let i = (current - 1) * pageSize; i < current * pageSize; i++) {
@@ -503,7 +507,8 @@ app.get('/paper/getpaperlist', jsonParser, async (req, res) => {
     let pageSize = 10
     let papers = await paperDB.getAll();
     papers = JSON.parse(papers);
-    console.log(papers)
+    Lib.sortByKey(papers, "createTime");
+    // console.log(papers)
     let total = papers.length
     console.log(total)
     let paperList = []

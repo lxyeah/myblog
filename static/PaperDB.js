@@ -115,7 +115,7 @@ module.exports = {
 
                 console.log('[GET-PAPER-SUCCESS] ')
 
-                console.log(res);
+                // console.log(res);
 
                 if (res.length !== 0) {
 
@@ -181,7 +181,7 @@ module.exports = {
 
                     console.log('[GET-ALL-PAPER-SUCCESS]');
 
-                    console.log(res);
+                    // console.log(res);
 
                     if (res.length !== 0) {
 
