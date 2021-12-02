@@ -49,12 +49,6 @@ Vue.use(VueRouter)
           name: 'BasicEditor',
           component: () => import('@/views/EditorModule/BasicEditor')
         },
-
-        {
-          path: 'submitpage',
-          name: 'SubmitPage',
-          component: () => import('@/views/EditorModule/SubmitPage')
-        },
         {
           path: '/userLayout/:userId/:firstPage',
           name: 'userLayout',

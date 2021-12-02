@@ -59,7 +59,7 @@ export default{
 
             this.addPaper()
             this.$message.success('Submit success!', 2);
-            this.jumptosubmitpage()
+            this.jumpToMyArticles()
         },
         addPaper(){
             console.log("This is addPaper operation")
@@ -82,8 +82,8 @@ export default{
             var seconds = ('0' + (d.getSeconds())).slice(-2)
             return year + "-" + month + "-" + day + " " + hour + "-" + minutes + "-" + seconds
         },
-        jumptosubmitpage(){
-            this.$router.push('/MyBlog/submitpage').catch(err => {err})
+        jumpToMyArticles(){
+            this.$router.push('/userLayout/' + this.getUserId + '/2/myArticles/' + this.getUserId).catch(err => {err})
         }
     },
     actions:{

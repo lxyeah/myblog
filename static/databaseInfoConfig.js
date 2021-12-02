@@ -2,7 +2,7 @@ module.exports = {
     user: {
         host: 'localhost',
         user: 'root',
-        password: 'ZHIXINGHEYI99',
+        password: 'root',
         database: 'internet_work'
     }
 }
