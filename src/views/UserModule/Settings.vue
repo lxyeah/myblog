@@ -7,7 +7,7 @@
         <a-form-item label="用户名" :label-col="{ span: 3 }" :wrapper-col="{ span: 8, offset: 1  }">
             <a-input
                     placeholder="请填写用户名"
-                    v-decorator="['userName', { rules: [{ required: true, message: '请输入用户名' }] }]"
+                    v-decorator="['userName', { rules: [{ required: true, message: '请输入用户名' }], initialValue: userInfo.userName }]"
                     v-if="modifyInfo"
             />
             <span v-else>{{ userInfo.userName }}</span>
@@ -18,9 +18,9 @@
         </a-form-item>
 
         <a-form-item label="性别" :label-col="{ span: 3 }" :wrapper-col="{ span: 8, offset: 1 }">
-            <a-select default-value="无" v-if="modifyInfo" v-decorator="['sex', { rules: [{ required: true, message: '请选择性别' }] }]">
-                <a-select-option value="无">
-                    无
+            <a-select default-value="保密" v-if="modifyInfo" v-decorator="['sex', { rules: [{ required: true, message: '请选择性别' }], initialValue: userInfo.sex }]">
+                <a-select-option value="保密">
+                    保密
                 </a-select-option>
                 <a-select-option value="男">
                     男
@@ -35,7 +35,7 @@
         <a-form-item label="年龄" :label-col="{ span: 3 }" :wrapper-col="{ span: 8, offset: 1 }">
             <a-input
                     placeholder="请填年龄"
-                    v-decorator="['age', { rules: [{ required: true, message: '请输入年龄' }] }]"
+                    v-decorator="['age', { rules: [{ required: true, message: '请输入年龄' }], initialValue: userInfo.age }]"
                     v-if="modifyInfo"
             />
             <span v-else>{{ userInfo.age}}</span>
@@ -44,7 +44,7 @@
         <a-form-item label="自我介绍" :label-col="{ span: 3 }" :wrapper-col="{ span: 8, offset: 1 }">
             <a-input
                     placeholder="请输入自我介绍"
-                    v-decorator="['description', { rules: [{ required: true, message: '请输入介绍' }] }]"
+                    v-decorator="['description', { rules: [{ required: false, message: '请输入介绍' }], initialValue: userInfo.description }]"
                     v-if="modifyInfo"
             />
             <span v-else>{{ userInfo.description}}</span>
@@ -169,6 +169,7 @@
         cancelModifyInfo(){
             if(this.modifyPassword)this.modifyPassword=false
             this.modifyInfo=false
+            this.$message.error("修改取消", 3)
         },
         saveModifyPassword(){
             console.log(this.basic)
